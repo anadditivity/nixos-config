@@ -143,7 +143,14 @@
       librewolf
       libreoffice-qt6-fresh
       qbittorrent
-
+      obsidian
+      texlive.combined.scheme-tetex
+      obs-studio
+      protonvpn-gui
+      python314
+      zulu21
+      rstudio
+      zulip
     ];
   };
 
