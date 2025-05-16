@@ -136,7 +136,6 @@
       discord
       gimp
       wget
-      bitwarden-desktop
       librewolf
       spotify
     ];
