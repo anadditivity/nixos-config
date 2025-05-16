@@ -147,7 +147,9 @@
     ];
   };
 
-
+  ###### KDECONNECT ######
+  programs.kdeconnect.enable = true;
+  ###### KDECONNECT ######
 
   ######### STEAM #########
   # Install Steam
