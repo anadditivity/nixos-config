@@ -78,7 +78,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -136,13 +136,15 @@
       discord
       gimp
       wget
-      librewolf
       spotify
+      ungoogled-chromium
+      web-eid-app
+      qdigidoc
+      librewolf
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+
 
   ######### STEAM #########
   # Install Steam
@@ -158,6 +160,63 @@
   programs.neovim.enable = true;
   ######### NEOVIM #########
 
+  ######### LIBREWOLF WITH WEBEID #########
+#   home-manager.users.myuser = {
+#     programs.librewolf = {
+#       enable = true;
+#       # Disable WebGL, enable cookies and history
+#       settings = {
+#         "webgl.disabled" = true;
+#         "privacy.resistFingerprinting" = false;
+#         "privacy.clearOnShutdown.history" = false;
+#         "privacy.clearOnShutdown.cookies" = false;
+#         "network.cookie.lifetimePolicy" = 0;
+#       };
+#     };
+#   };
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;  # Use genuine Firefox for proper WebEID support
+    nativeMessagingHosts.euwebid = true;
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      Preferences = {
+        "cookiebanners.service.mode.privateBrowsing" = 2;
+        "cookiebanners.service.mode" = 2;
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.fingerprintingProtection" = true;
+        "privacy.resistFingerprinting" = true;
+        "privacy.trackingprotection.emailtracking.enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.fingerprinting.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
+      };
+      ExtensionSettings = {
+        "jid1-ZAdIEUB7XOzOJw@jetpack" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/duckduckgo-for-firefox/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+      SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
+    };
+  };
+
+  services.pcscd.enable = true;
+  # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
+  # (PIN1 for authentication/decryption, PIN2 for signing).
+  environment.etc."pkcs11/modules/opensc-pkcs11".text = ''
+    module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+  '';
+  environment.etc."chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+  environment.etc."opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+  ######### LIBREWOLF WITH WEBEID #########
+
 
 
   # Allow unfree packages
@@ -168,6 +227,22 @@
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget
+
+    ######### WEBEID #########
+    # Wrapper script to tell to Chrome/Chromium to use p11-kit-proxy to load
+    # security devices, so they can be used for TLS client auth.
+    # Each user needs to run this themselves, it does not work on a system level
+    # due to a bug in Chromium:
+    #
+    # https://bugs.chromium.org/p/chromium/issues/detail?id=16387
+    (pkgs.writeShellScriptBin "setup-browser-eid" ''
+      NSSDB="''${HOME}/.pki/nssdb"
+      mkdir -p ''${NSSDB}
+
+      ${pkgs.nssTools}/bin/modutil -force -dbdir sql:$NSSDB -add p11-kit-proxy \
+        -libfile ${pkgs.p11-kit}/lib/p11-kit-proxy.so
+    '')
+    ######### WEBEID #########
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
