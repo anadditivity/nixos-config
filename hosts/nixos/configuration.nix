@@ -146,7 +146,6 @@
       obsidian
       texlive.combined.scheme-tetex
       obs-studio
-      protonvpn-gui
       python314
       zulu21
       rstudio
