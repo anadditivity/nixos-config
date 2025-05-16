@@ -141,6 +141,9 @@
       web-eid-app
       qdigidoc
       librewolf
+      libreoffice-qt6-fresh
+      qbittorrent
+
     ];
   };
 
@@ -161,24 +164,10 @@
   ######### NEOVIM #########
 
   ######### LIBREWOLF WITH WEBEID #########
-#   home-manager.users.myuser = {
-#     programs.librewolf = {
-#       enable = true;
-#       # Disable WebGL, enable cookies and history
-#       settings = {
-#         "webgl.disabled" = true;
-#         "privacy.resistFingerprinting" = false;
-#         "privacy.clearOnShutdown.history" = false;
-#         "privacy.clearOnShutdown.cookies" = false;
-#         "network.cookie.lifetimePolicy" = 0;
-#       };
-#     };
-#   };
-
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;  # Use genuine Firefox for proper WebEID support
-    nativeMessagingHosts.euwebid = true;
+    nativeMessagingHosts.packages = [ pkgs.web-eid-app ];
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
