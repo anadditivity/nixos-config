@@ -130,6 +130,12 @@
       thunderbird
       lutris
       git
+      vlc
+      tree
+      signal-desktop
+      discord
+      gimp
+      wget
     ];
   };
 
