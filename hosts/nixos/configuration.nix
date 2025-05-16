@@ -150,6 +150,7 @@
       zulu21
       rstudio
       zulip
+      filen-desktop
     ];
   };
 
