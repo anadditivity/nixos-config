@@ -152,6 +152,13 @@
       zulip
       filen-desktop
       heroic
+      gh
+      htop
+      kdePackages.kdenlive
+      handbrake
+      vscodium
+      ente-auth
+      fzf
     ];
   };
 
