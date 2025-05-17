@@ -155,6 +155,16 @@
     ];
   };
 
+  ######### AUTOUPDATE AND GC #########
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.dates = "weekly";
+
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than 10d";
+  nix.settings.auto-optimise-store = true;
+  ######### AUTOUPDATE AND GC #########
+
   ######### STEAM #########
   # Install Steam
   programs.steam.enable = true;
