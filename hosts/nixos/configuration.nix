@@ -154,10 +154,6 @@
     ];
   };
 
-  ###### KDECONNECT ######
-  programs.kdeconnect.enable = true;
-  ###### KDECONNECT ######
-
   ######### STEAM #########
   # Install Steam
   programs.steam.enable = true;
@@ -172,7 +168,7 @@
   programs.neovim.enable = true;
   ######### NEOVIM #########
 
-  ######### LIBREWOLF WITH WEBEID #########
+  ######### FIREFOX WITH WEBEID #########
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;  # Use genuine Firefox for proper WebEID support
@@ -213,7 +209,7 @@
   '';
   environment.etc."chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
   environment.etc."opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
-  ######### LIBREWOLF WITH WEBEID #########
+  ######### FIREFOX WITH WEBEID #########
 
 
 
