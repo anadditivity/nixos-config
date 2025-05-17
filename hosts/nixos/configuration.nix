@@ -158,7 +158,8 @@
       handbrake
       vscodium
       ente-auth
-      fzf
+      nerd-fonts.jetbrains-mono
+      hstr
     ];
   };
 
