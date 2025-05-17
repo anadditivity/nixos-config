@@ -151,6 +151,7 @@
       rstudio
       zulip
       filen-desktop
+      heroic
     ];
   };
 
