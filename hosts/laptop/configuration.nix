@@ -123,7 +123,7 @@
       ente-auth
       nerd-fonts.jetbrains-mono
       hstr
-      ciscoPacketTracer8
+      ciscoPacketTracer7
     ];
   };
 
