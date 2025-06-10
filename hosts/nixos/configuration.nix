@@ -161,6 +161,9 @@
       nerd-fonts.jetbrains-mono
       hstr
       ciscoPacketTracer8
+      session-desktop
+      kdePackages.kcalc
+      android-tools
     ];
   };
 
