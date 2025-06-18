@@ -164,6 +164,8 @@
       session-desktop
       kdePackages.kcalc
       android-tools
+      zoom-us
+      protonvpn-gui
     ];
   };
 
