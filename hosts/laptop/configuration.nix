@@ -123,6 +123,7 @@
       ente-auth
       nerd-fonts.jetbrains-mono
       hstr
+      bottles
     ];
   };
 
