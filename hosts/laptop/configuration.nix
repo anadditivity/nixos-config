@@ -124,6 +124,12 @@
       nerd-fonts.jetbrains-mono
       hstr
       bottles
+      fzf
+      atuin
+      bat
+      tldr
+      zellij
+      eza
     ];
   };
 
