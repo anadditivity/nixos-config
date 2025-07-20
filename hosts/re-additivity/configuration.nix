@@ -12,21 +12,11 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/nvme0n1";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/boot/crypto_keyfile.bin" = null;
-  };
-
-  boot.loader.grub.enableCryptodisk = true;
-
-  boot.initrd.luks.devices."luks-fc2a6738-b6f7-4c6d-95c4-f0eb6bac45c3".keyFile = "/boot/crypto_keyfile.bin";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "re-additivity"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
 
   ####### NIX FLAKES #######
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -43,7 +33,7 @@
   time.timeZone = "Europe/Tallinn";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "et_EE.UTF-8";
@@ -59,7 +49,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver.enable = false; #true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -93,8 +83,6 @@
     #media-session.enable = true;
   };
 
-
-
   ############################### NVIDIA ###############################
   # Nvidia driver handling from Vimjoyer on YT
   hardware.graphics = {
@@ -114,17 +102,6 @@
   };
   ############################### NVIDIA ###############################
 
-
-
-  ############################### HOME-MANAGER ###############################
-  home-manager = {
-    # also pass inputs to home-manager modules
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      "addy" = import ./home.nix;
-    };
-  };
-  ############################### HOME-MANAGER ###############################
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -152,14 +129,25 @@
       libreoffice-qt6-fresh
       obsidian
       python314
-      filen-desktop
+#      filen-desktop
       ente-auth
-      nerd-fonts.jetbrains-mono
+#      nerd-fonts.jetbrains-mono
       hstr
       kdePackages.kcalc
       cheese
     ];
   };
+
+
+  ############################### HOME-MANAGER ###############################
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "addy" = import ./home.nix;
+    };
+  };
+  ############################### HOME-MANAGER ###############################
 
   ######### AUTOUPDATE AND GC #########
   system.autoUpgrade.enable = true;
@@ -225,6 +213,9 @@
   ######### FIREFOX WITH WEBEID #########
 
 
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "addy";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -232,9 +223,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #wget
-
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
     ######### WEBEID #########
     # Wrapper script to tell to Chrome/Chromium to use p11-kit-proxy to load
     # security devices, so they can be used for TLS client auth.
