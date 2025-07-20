@@ -17,7 +17,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -40,7 +40,6 @@
     obs-studio
     zulu21
     heroic
-    gh
     kdePackages.kdenlive
     handbrake
     vscodium
@@ -48,8 +47,10 @@
     android-tools
     zoom-us
     protonvpn-gui
-    programs.neovim
+    neovim
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -88,20 +89,6 @@
   #
   #  /etc/profiles/per-user/addy/etc/profile.d/hm-session-vars.sh
   #
-
-
-  # Enable Neovim
-  programs.neovim = {
-    enable = true;
-    configure = {
-      customRC = ''
-        set number
-        set tabstop=2
-        set shiftwidth=2
-        set expandtab
-      '';
-    };
-  };
 
   home.sessionVariables = {
     # EDITOR = "emacs";

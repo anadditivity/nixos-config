@@ -116,6 +116,15 @@
 
 
 
+  ############################### HOME-MANAGER ###############################
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {inherit inputs;};
+    users = {
+      "addy" = import ./home.nix;
+    };
+  };
+  ############################### HOME-MANAGER ###############################
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
