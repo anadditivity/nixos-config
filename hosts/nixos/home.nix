@@ -13,11 +13,11 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -34,7 +34,46 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    kdePackages.kate
+    thunderbird-esr
+    git
+    git-credential-manager
+    vlc
+    tree
+    signal-desktop
+    gimp
+    wget
+    spotify
+    ungoogled-chromium
+    web-eid-app
+    qdigidoc
+    librewolf
+    libreoffice-qt6-fresh
+    obsidian
+    python314
+    filen-desktop
+    ente-auth
+    nerd-fonts.jetbrains-mono
+    hstr
+    kdePackages.kcalc
+    cheese
+    lutris
+    discord
+    qbittorrent
+    obs-studio
+    zulu21
+    heroic
+    kdePackages.kdenlive
+    handbrake
+    vscodium
+    session-desktop
+    android-tools
+    zoom-us
+    protonvpn-gui
+    neovim
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -49,6 +88,12 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/neovim/init.vim".text = ''
+      set number
+      set tabstop=2
+      set shiftwidth=2
+      set expandtab
+    '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -67,8 +112,10 @@
   #
   #  /etc/profiles/per-user/addy/etc/profile.d/hm-session-vars.sh
   #
+
   home.sessionVariables = {
     # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
