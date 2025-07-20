@@ -11,10 +11,24 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/nixos/configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
+    };
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/laptop/configuration.nix
+        inputs.home-manager.nixosModules.default
+      ];
+    };
     nixosConfigurations.re-additivity = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./hosts/re-additivity/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };
