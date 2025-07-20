@@ -128,12 +128,10 @@
     packages = with pkgs; [
       kdePackages.kate
       thunderbird-esr
-      lutris
       git
       vlc
       tree
       signal-desktop
-      discord
       gimp
       wget
       spotify
@@ -142,30 +140,14 @@
       qdigidoc
       librewolf
       libreoffice-qt6-fresh
-      qbittorrent
       obsidian
-      texlive.combined.scheme-tetex
-      obs-studio
       python314
-      zulu21
-      rstudio
-      zulip
       filen-desktop
-      heroic
-      gh
-      htop
-      kdePackages.kdenlive
-      handbrake
-      vscodium
       ente-auth
       nerd-fonts.jetbrains-mono
       hstr
-      ciscoPacketTracer8
-      session-desktop
       kdePackages.kcalc
-      android-tools
-      zoom-us
-      protonvpn-gui
+      cheese
     ];
   };
 
@@ -188,10 +170,6 @@
   programs.gamemode.enable = true;
   ## Can add optimizations to game on Steam with `gamemoderun %command%` and `gamescope %command%`
   ######### STEAM #########
-
-  ######### NEOVIM #########
-  programs.neovim.enable = true;
-  ######### NEOVIM #########
 
   ######### FIREFOX WITH WEBEID #########
   programs.firefox = {

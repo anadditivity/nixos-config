@@ -34,6 +34,21 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    lutris
+    discord
+    qbittorrent
+    obs-studio
+    zulu21
+    heroic
+    gh
+    kdePackages.kdenlive
+    handbrake
+    vscodium
+    session-desktop
+    android-tools
+    zoom-us
+    protonvpn-gui
+    programs.neovim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -49,6 +64,12 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/neovim/init.vim".text = ''
+      set number
+      set tabstop=2
+      set shiftwidth=2
+      set expandtab
+    '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -67,8 +88,24 @@
   #
   #  /etc/profiles/per-user/addy/etc/profile.d/hm-session-vars.sh
   #
+
+
+  # Enable Neovim
+  programs.neovim = {
+    enable = true;
+    configure = {
+      customRC = ''
+        set number
+        set tabstop=2
+        set shiftwidth=2
+        set expandtab
+      '';
+    };
+  };
+
   home.sessionVariables = {
     # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
