@@ -138,6 +138,7 @@
       kdePackages.kate
       thunderbird-esr
       git
+      git-credential-manager
       vlc
       tree
       signal-desktop
