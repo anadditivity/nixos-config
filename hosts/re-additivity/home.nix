@@ -72,6 +72,7 @@
     zoom-us
     protonvpn-gui
     neovim
+    itch
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
