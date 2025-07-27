@@ -112,29 +112,7 @@
     description = "addy";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-      thunderbird-esr
-      git
-      git-credential-manager
-      vlc
-      tree
-      signal-desktop
-      gimp
-      wget
-      spotify
-      ungoogled-chromium
-      web-eid-app
-      qdigidoc
-      librewolf
-      libreoffice-qt6-fresh
-      obsidian
-      python314
-#      filen-desktop
-      ente-auth
-#      nerd-fonts.jetbrains-mono
-      hstr
-      kdePackages.kcalc
-      cheese
+
     ];
   };
 

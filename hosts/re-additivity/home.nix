@@ -17,7 +17,8 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  nixpkgs.config.allowUnfree = true;
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -34,6 +35,43 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    kdePackages.kate
+    thunderbird-esr
+    git
+    git-credential-manager
+    vlc
+    tree
+    signal-desktop
+    gimp
+    wget
+    spotify
+    ungoogled-chromium
+    web-eid-app
+    qdigidoc
+    librewolf
+    libreoffice-qt6-fresh
+    obsidian
+    python314
+    filen-desktop
+    ente-auth
+    nerd-fonts.jetbrains-mono
+    hstr
+    kdePackages.kcalc
+    cheese
+    lutris
+    discord
+    qbittorrent
+    obs-studio
+    zulu21
+    heroic
+    kdePackages.kdenlive
+    handbrake
+    vscodium
+    session-desktop
+    android-tools
+    zoom-us
+    protonvpn-gui
+    neovim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -68,7 +106,7 @@
   #  /etc/profiles/per-user/addy/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
