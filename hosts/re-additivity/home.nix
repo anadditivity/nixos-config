@@ -73,7 +73,7 @@
     protonvpn-gui
     neovim
     itch
-    gpg
+    gnupg
     pass
   ];
 
