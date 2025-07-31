@@ -65,7 +65,6 @@
     zulu21
     heroic
     kdePackages.kdenlive
-    handbrake
     vscodium
     session-desktop
     android-tools
