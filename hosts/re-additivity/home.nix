@@ -74,6 +74,7 @@
     itch
     gnupg
     pass
+    wine
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
