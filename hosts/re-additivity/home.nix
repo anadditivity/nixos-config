@@ -74,7 +74,6 @@
     itch
     gnupg
     pass
-    libnss_nis
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
