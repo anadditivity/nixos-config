@@ -71,7 +71,6 @@
     zoom-us
     protonvpn-gui
     neovim
-    itch
     gnupg
     pass
     wine
